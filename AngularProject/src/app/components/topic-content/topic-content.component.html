@@ -1,0 +1,31 @@
+
+<form #commentform="ngForm" (ngSubmit)="onSubmit(commentform)">
+  <div class="form">
+      <label for="inputPassword4">Do Comment</label>
+<div class="form-group">
+    <textarea class="form-control" name="CommentContent" #CommentContent="ngModel" [(ngModel)]="siteService.Comment.CommentContent" placeholder="CommentContent" required></textarea>
+    <div *ngIf="CommentContent.errors && (CommentContent.dirty || CommentContent.touched)" class="alert alert-danger">
+      <div [hidden]="!CommentContent.errors.required">
+        CommentContent is required
+      </div>
+    </div>
+</div>
+     
+
+          <button type="submit" [disabled]="!commentform.form.valid" class="btn btn-primary" style="float:right;">Gönder</button>
+    
+</div>
+
+</form>
+
+<br/>
+<br/>
+<br/>
+<br/>
+  <div class="media mb-4" *ngFor="let item of comments;">
+    <img class="d-flex mr-3 rounded-circle" style="width:70px;" src="https://react.semantic-ui.com/images/avatar/large/matthew.png" alt="">
+    <div class="media-body">
+      <h5 class="mt-0">{{item.User.Email}}</h5>
+      {{item.CommentContent}}
+    </div>
+  </div>

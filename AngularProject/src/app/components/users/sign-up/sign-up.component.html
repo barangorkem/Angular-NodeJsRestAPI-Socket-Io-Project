@@ -1,0 +1,61 @@
+<form #accountform="ngForm" (ngSubmit)="onSubmit(accountform)">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" name="Email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #Email="ngModel" [(ngModel)]="userService.userData.Email" placeholder="Email" required>
+      <div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="alert alert-danger">
+        <div [hidden]="!Email.errors.required">
+          Email  is required
+        </div>
+        <div [hidden]="!Email.errors.pattern">
+          Must be a valid email 
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Password</label>
+      <input type="password" class="form-control" name="Password" #Password="ngModel" [(ngModel)]="userService.userData.Password" placeholder="Password" required>
+      <div *ngIf="Password.errors && (Password.dirty || Password.touched)" class="alert alert-danger">
+        <div [hidden]="!Password.errors.required">
+          Password  is required
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">UserName</label>
+    <input type="text" class="form-control" name="UserName" #UserName="ngModel" [(ngModel)]="userService.userData.UserName" placeholder="UserName" required minlength="5" maxlength="15">
+  <div *ngIf="UserName.errors && (UserName.dirty || UserName.touched)" class="alert alert-danger">
+    <div [hidden]="!UserName.errors.required">
+      UserName  is required
+    </div>
+    <div [hidden]="!UserName.errors.minlength">
+      UserName must be least 5 characters long.
+    </div>
+    <div [hidden]="!UserName.errors.maxlength">
+      UserName cannot be more than 15 characters long.
+    </div>
+  </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">FirstName</label>
+    <input type="text" class="form-control" name="FirstName" #FirstName="ngModel" [(ngModel)]="userService.userData.FirstName"  placeholder="FirstName" required>
+    <div *ngIf="FirstName.errors && (FirstName.dirty || FirstName.touched)" class="alert alert-danger">
+      <div [hidden]="!FirstName.errors.required">
+        FirstName  is required
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="inputAddress2">LastName</label>
+      <input type="text" class="form-control" name="LastName" #LastName="ngModel" [(ngModel)]="userService.userData.LastName"  placeholder="LastName" required>
+      <div *ngIf="LastName.errors && (LastName.dirty || LastName.touched)" class="alert alert-danger">
+        <div [hidden]="!LastName.errors.required">
+          LastName  is required
+        </div>
+      </div>
+    </div>
+
+  <button type="submit" [disabled]="!accountform.form.valid" style="float:right;" class="btn btn-primary">Sign Up</button>
+</form>
+

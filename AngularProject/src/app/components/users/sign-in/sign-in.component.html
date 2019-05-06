@@ -1,0 +1,27 @@
+<form #loginform="ngForm" (ngSubmit)="onSubmit(loginform)">
+
+  <div class="form-group">
+    <label for="inputEmail4">Email</label>
+    <input type="email" class="form-control" name="Email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #Email="ngModel" [(ngModel)]="userService.userData.Email" placeholder="Email" required>
+    <div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="alert alert-danger">
+      <div [hidden]="!Email.errors.required">
+        Email  is required
+      </div>
+      <div [hidden]="!Email.errors.pattern">
+        Must be a valid email 
+      </div>
+    </div>
+  </div>
+    <div class="form-group">
+      <label for="inputPassword4">Password</label>
+      <input type="password" class="form-control" name="Password" #Password="ngModel" [(ngModel)]="userService.userData.Password" placeholder="Password" required>
+      <div *ngIf="Password.errors && (Password.dirty || Password.touched)" class="alert alert-danger">
+        <div [hidden]="!Password.errors.required">
+          Password  is required
+        </div>
+      </div>
+    </div>
+  
+  <button type="submit" [disabled]="!loginform.form.valid" style="float:right;" class="btn btn-primary">Sign in</button>
+  <h4 *ngIf="userService.isLoginError" style="color:Red;">{{userService.message}}</h4>
+</form>

@@ -1,0 +1,14 @@
+
+<h4>Yeni Açılan Konular</h4><br>
+
+<div class="card card-outline-secondary">
+  <div class="card-header">
+    Açılan Konular
+  </div>
+  <div class="card-body" *ngFor="let item of topicsData;">
+    <p>{{item.TopicName}}</p>
+    <small class="text-muted">Posted by {{item.User.Email}} on {{item.TopicTime}}</small>
+    <button class="btn btn-primary" style="float:right;width: 78.7625px" (click)="onTopicContent(item._id)">Git</button>
+    <hr>
+     </div>
+</div>

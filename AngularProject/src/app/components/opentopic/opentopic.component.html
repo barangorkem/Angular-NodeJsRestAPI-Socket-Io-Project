@@ -1,0 +1,20 @@
+<form #topicform="ngForm" (ngSubmit)="onSubmit(topicform)">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Topic</label>
+      <input type="text" class="form-control" name="TopicName" #TopicName="ngModel" [(ngModel)]="siteService.Topic.TopicName" placeholder="TopicName" required>
+      <div *ngIf="TopicName.errors && (TopicName.dirty || TopicName.touched)" class="alert alert-danger">
+        <div [hidden]="!TopicName.errors.required">
+            TopicName is required
+        </div>
+      </div>
+    </div>
+ 
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+    <button type="submit" [disabled]="!topicform.form.valid" class="btn btn-primary" style="float:right;">Gönder</button>
+</div>
+</div>
+
+</form>
